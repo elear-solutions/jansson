@@ -1,6 +1,5 @@
 from conans import ConanFile, CMake, tools
 
-
 class JanssonlibConan(ConanFile):
     name = "jansson"
     version = "0.1"
@@ -11,20 +10,20 @@ class JanssonlibConan(ConanFile):
     topics = ("<Put some tag here>", "<here>", "<and here>")
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False]}
-    default_options = "shared=False"
+    default_options = "shared=True"
     generators = "cmake"
 
     def build(self):
         cmake = CMake(self)
         if (self.settings.os == "Android"):
-            cmake.definitions["Platform"] = "android"
+            cmake.definitions[ "Platform" ] = "android"
         cmake.configure(source_folder=".")
         cmake.build()
 
     def package(self):
         self.copy("*.h", dst="include", src="include")
-        self.copy("*", dst="lib", keep_path=False)
+        self.copy("*", dst="lib", src= "lib",keep_path=False)
 
     def package_info(self):
-        self.cpp_info.libs = ["jansson"]
+        self.cpp_info.libs = [ "jansson" ]
 
