@@ -22,7 +22,7 @@ class JanssonlibConan(ConanFile):
 
     def package(self):
         self.copy("*.h", dst="include", src="include")
-        self.copy("*", dst="lib", src= "lib",keep_path=False)
+        self.copy("*", dst="lib", src= "lib", keep_path=False)
 
     def package_info(self):
         self.cpp_info.libs = [ "jansson" ]
